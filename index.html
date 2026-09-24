@@ -77,15 +77,19 @@ html,body{
 
   background:
     linear-gradient(
-      100deg,
-      #bfae70 0%,
-      #f2e7b9 27%,
-      #d5b985 46%,
-      #fff0dc 58%,
-      #d8b3a7 69%,
-      #f0dfad 78%,
-      #bfae70 100%
-    ) 0 0/250% 100%;
+      108deg,
+      #6f4d18 0%,
+      #f4d26a 10%,
+      #fff0be 21%,
+      #f6d98d 31%,
+      #fff6d9 41%,
+      #d3a44a 52%,
+      #fff5c2 62%,
+      #f2d783 72%,
+      #fff8df 82%,
+      #a77b2f 90%,
+      #6f4d18 100%
+    ) 0 0/220% 100%;
 
   -webkit-background-clip:text;
   background-clip:text;
@@ -94,14 +98,18 @@ html,body{
     drop-shadow(
       0 1px 1.5px
       rgba(0,0,0,.8)
-    );
+    )
+    drop-shadow(0 0 12px rgba(255,212,110,.34));
 
   animation:
-    sh 6s ease-in-out infinite alternate;
+    sh 5s ease-in-out infinite alternate;
 }
 
 @keyframes sh{
-  to{
+  0%{
+    background-position:0% 0;
+  }
+  100%{
     background-position:100% 0;
   }
 }
@@ -294,18 +302,21 @@ html,body{
   inset:0;
   pointer-events:none;
 
-  mix-blend-mode:soft-light;
+  mix-blend-mode:screen;
 
   background:
     linear-gradient(
       115deg,
-      transparent 40%,
-      rgba(255,240,210,.5) 50%,
-      transparent 60%
-    ) 0 0/260% 100%;
+      transparent 32%,
+      rgba(255,235,170,.8) 46%,
+      rgba(255,248,220,.98) 50%,
+      rgba(255,211,120,.75) 54%,
+      rgba(255,239,180,.6) 58%,
+      transparent 68%
+    ) 0 0/240% 100%;
 
   animation:
-    sw 8s linear infinite;
+    sw 6s linear infinite;
 }
 
 @keyframes sw{
@@ -1005,18 +1016,12 @@ function flower(cx,cy,s,rot,seed){
           stroke-opacity=".5"
           stroke-width=".8"/>` +
 
-        (
-          i%2
-          ?
-          `<path
-            d="${PET}"
-            fill="none"
-            stroke="#d4aaa4"
-            stroke-width="3"
-            stroke-dasharray="1 3.2"/>`
-          :
-          ""
-        ) +
+        `<path
+          d="${PET}"
+          fill="none"
+          stroke="${i%2 ? '#d4aeb0' : '#c4a26d'}"
+          stroke-width=".8"
+          stroke-dasharray="1 3.2"/>` +
 
         `</g>`;
     });
@@ -1025,30 +1030,24 @@ function flower(cx,cy,s,rot,seed){
   /* tiny blush buds */
 
   for(let i=0;i<5;i++){
-
     const a =
       -1.9+
       i*.42+
       (q()-.5)*.2;
-
     const L =
       110+q()*40;
-
     const x =
       Math.cos(a)*L;
-
     const y =
       Math.sin(a)*L-20;
-
     o +=
       `<path
         d="
           M0-8
-          Q${x*.3} ${y*.4-20}
-          ${x} ${y}
+          Q${x*.3} ${y*.4-20} ${x} ${y}
         "
         fill="none"
-        stroke="#887153"
+        stroke="#888f53"
         stroke-width="2.6"
         stroke-linecap="round"/>` +
 
@@ -1060,12 +1059,11 @@ function flower(cx,cy,s,rot,seed){
         transform="
           rotate(
             ${a*57.3+90}
-            ${x}
-            ${y}
-          )"
-        fill="${i%2
-          ? "#c99691"
-          : "#d9aaa4"}"/>`;
+          )
+          ${x}
+          ${y}
+          "
+        fill="${i%2 ? '#c99691' : '#d9aaa4'}"/>`;
   }
 
   return o+"</g>";
@@ -1078,7 +1076,7 @@ $("flowers").innerHTML =
 
 
 /* =====================================================
-   WARM IVORY + BLUSH LIGHTS
+   WARM GLINT + BLUSH LIGHTS
    ===================================================== */
 
 const cv =
@@ -1095,9 +1093,8 @@ const still =
 let W,H,last=0;
 
 const G=[],
-      STR=[],
+      STR=[] ,
       r2=rng(21);
-
 
 const spr =
   col => {
@@ -1124,7 +1121,7 @@ const spr =
     ].forEach(([o,a]) =>
       g.addColorStop(
         o,
-        `rgba(${col},${a})`
+        `rgba(${a*255},${a*255},${a*255},${a})`
       )
     );
 
@@ -1134,17 +1131,14 @@ const spr =
     return e;
   };
 
-
 const SP =
   [
     "255,236,170",
-    "255,247,220",
-    "239,204,197"
+    "255,247,221",
+    "239,204,147"
   ].map(spr);
 
-
 const size=()=>{
-
   const d =
     Math.min(
       devicePixelRatio || 1,
@@ -1164,13 +1158,12 @@ const size=()=>{
 
 
 for(let i=0;i<130;i++){
-
   G.push({
     x:r2(),
     y:r2(),
     s:4+r2()*8,
     p:r2()*6.28,
-    v:.5+r2()*1.3,
+    v:r2()*1.3,
     c:i%3,
     u:i%4
       ? 0
@@ -1178,40 +1171,32 @@ for(let i=0;i<130;i++){
   });
 }
 
-
 FP.forEach(([x,y])=>{
-
   G.push({
     x:(368+x*.92)/736,
     y:(288+y*.92)/1312,
     s:8,
     p:r2()*6.28,
-    v:1+r2()*1.2,
+    v:1,
     c:1,
     u:0
   });
 });
 
-
 const string=(fn,n)=>{
-
-  const pts=[],
+  const pnts=[],
         m=60;
-
   for(let i=0;i<=m;i++)
-    pts.push(fn(i/m));
-
-  STR.push({pts});
+    pnts.push(fn(i/m));
+  STR.push({pnts});
 
   for(let i=0;i<=n;i++){
-
     const [x,y]=fn(i/n);
-
     G.push({
       x,
       y,
       s:15,
-      p:i*.9,
+      p:1.9,
       v:1.6,
       c:i%2?0:2,
       u:0,
@@ -1220,11 +1205,10 @@ const string=(fn,n)=>{
   }
 };
 
-
 string(
   t=>[
     t,
-    .012+.05*Math.sin(
+    .012+ .05*Math.sin(
       t*Math.PI
     )
   ],
@@ -1233,7 +1217,6 @@ string(
 
 string(
   t=>[
-    t,
     .05
   ],
   0
@@ -1261,13 +1244,11 @@ string(
 function frame(ms){
 
   const t=ms/1000;
-
   const dt=
     Math.min(
       t-last,
       .1
     );
-
   last=t;
 
   const k=W/390;
@@ -1276,47 +1257,39 @@ function frame(ms){
     0,0,W,H
   );
 
-  c.strokeStyle=
+  c.strokeStyle =
     "rgba(0,0,0,.4)";
-
   c.lineWidth=1;
-
   STR.forEach(st=>{
-
     c.beginPath();
 
-    st.pts.forEach((p,i)=>
+    st.pnts.forEach((p,i)=>
       i
-      ?
-      c.lineTo(
-        p[0]*W,
-        p[1]*H
-      )
-      :
-      c.moveTo(
-        p[0]*W,
-        p[1]*H
-      )
+        ?
+        c.lineTo(
+          p[0]*W,
+          p[1]*H
+        )
+        :
+        c.moveTo(
+          p[0]*W,
+          p[1]*H
+        )
     );
-
     c.stroke();
   });
 
-  c.globalCompositeOperation=
+  c.globalCompositeOperation =
     "lighter";
-
   G.forEach(g=>{
-
     if(g.u){
-
       g.y -=
         g.u*dt*8;
 
       if(g.y<-.02)
         g.y=1.02;
     }
-
-    const a=
+    const a =
       g.b
       ?
       .6+
@@ -1324,28 +1297,15 @@ function frame(ms){
         t*g.v+g.p
       )
       :
-      .12+
-      .88*
-      Math.pow(
-        (
-          Math.sin(
-            t*g.v+g.p
-          )+1
-        )/2,
-        2
-      );
+      .12;
 
-    const r=
+    const r =
       g.s*k;
-
-    const x=
+    const x =
       g.x*W;
-
-    const y=
+    const y =
       g.y*H;
-
     c.globalAlpha=a;
-
     c.drawImage(
       SP[g.c],
       x-r,
@@ -1353,10 +1313,8 @@ function frame(ms){
       r*2,
       r*2
     );
-
     if(g.b){
-
-      c.globalAlpha=
+      c.globalAlpha =
         Math.min(
           1,
           a+.25
@@ -1371,16 +1329,13 @@ function frame(ms){
       );
     }
   });
-
   c.globalAlpha=1;
 
-  c.globalCompositeOperation=
+  c.globalCompositeOperation =
     "source-over";
-
   if(!still)
     requestAnimationFrame(frame);
 }
-
 
 size();
 
@@ -1391,7 +1346,6 @@ addEventListener(
 
 requestAnimationFrame(frame);
 
-
 /* =====================================================
    LIVE COUNTDOWN
    ===================================================== */
@@ -1400,15 +1354,13 @@ const pad =
   (v,n)=>
     String(v).padStart(n,"0");
 
-
 function tick(){
-
   const t =
     Math.max(
       0,
       Math.floor(
         (
-          WEDDING-
+          WEDDING -
           new Date()
         )/1000
       )
@@ -1422,17 +1374,13 @@ function tick(){
 
   $("h").textContent =
     pad(
-      Math.floor(
-        t%86400/3600
-      ),
+      Math.floor(t%86400/3600),
       2
     );
 
   $("m").textContent =
     pad(
-      Math.floor(
-        t%3600/60
-      ),
+      Math.floor(t%3600/60),
       2
     );
 

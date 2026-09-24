@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sidak &amp; Alam</title>
+<meta name="theme-color" content="#0f1a0c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Italianno&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#0f1a0c}
+.stage{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:max(100vw,56.1dvh);height:max(100dvh,178.3vw);container-type:size;overflow:hidden}
+@media (min-aspect-ratio:3/4){.stage{width:56.1dvh;height:100dvh}}
+.stage>svg,#glit{position:absolute;inset:0;width:100%;height:100%;display:block}
+#glit{pointer-events:none}
+.names{position:absolute;left:50%;top:37.4%;transform:translateX(-50%);white-space:nowrap;font:400 11cqw/1.2 "Pinyon Script","Snell Roundhand",cursive;color:transparent;
+  background:linear-gradient(100deg,#d8c380 0%,#f0e4b0 32%,#c9b26c 50%,#f0e4b0 68%,#d8c380 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;
+  filter:drop-shadow(0 1px 1.5px rgba(4,12,6,.8));animation:sh 6s ease-in-out infinite alternate}
+@keyframes sh{to{background-position:100% 0}}
+.count{position:absolute;left:50%;top:45.4%;transform:translateX(-50%);width:72cqw;display:grid;grid-template-columns:repeat(4,1fr);text-align:center;
+  padding:4.6cqw 1cqw 3.4cqw;border:1.5px solid #d9c27a;border-radius:3.2cqw;background:rgba(6,16,8,.5);
+  box-shadow:inset 0 0 0 1.3cqw rgba(22,40,24,.92),inset 0 0 0 calc(1.3cqw + 1px) rgba(217,194,122,.7),0 0 14px rgba(217,194,122,.18)}
+.count::before,.count::after{content:"◆";position:absolute;left:50%;transform:translateX(-50%);font-size:3.2cqw;line-height:1;color:#dfcb86;background:#16281a;padding:0 1.6cqw}
+.count::before{top:-1.9cqw}.count::after{bottom:-1.9cqw}
+.count div+div{border-left:1px solid rgba(217,194,122,.4)}
+.n{display:block;font:700 8.6cqw/1 "Playfair Display",serif;color:#efe0a8;text-shadow:0 1px 2px rgba(0,0,0,.55);font-variant-numeric:lining-nums tabular-nums}
+.l{display:block;margin-top:1.2cqw;font:400 4.6cqw/1 "Italianno","Pinyon Script",cursive;color:#d6c68c}
+.date{position:absolute;left:50%;top:61.4%;transform:translateX(-50%);white-space:nowrap;font:italic 500 4.6cqw/1 "Playfair Display",serif;color:#e0d29c;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.sheen{position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;background:linear-gradient(115deg,transparent 40%,rgba(255,240,180,.5) 50%,transparent 60%) 0 0/260% 100%;animation:sw 8s linear infinite}
+@keyframes sw{from{background-position:130% 0}to{background-position:-30% 0}}
+@media (prefers-reduced-motion:reduce){.names,.sheen{animation:none}}
+</style>
+</head>
+<body>
+<main class="stage">
+<svg viewBox="0 0 736 1312" preserveAspectRatio="none" aria-hidden="true">
+<defs>
+  <linearGradient id="vel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d3421"/><stop offset="1" stop-color="#101f12"/></linearGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a7a44"/><stop offset=".5" stop-color="#eadb9c"/><stop offset="1" stop-color="#a08e52"/></linearGradient>
+  <linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0e3b4"/><stop offset=".5" stop-color="#d8c07a"/><stop offset="1" stop-color="#f8eecb"/></linearGradient>
+  <radialGradient id="pet" cx="50%" cy="75%" r="75%"><stop offset="0" stop-color="#f8f3e9"/><stop offset=".6" stop-color="#e8e1d1"/><stop offset="1" stop-color="#cfc6b2"/></radialGradient>
+    <filter id="pp"><feTurbulence baseFrequency=".7" numOctaves="3" seed="2"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .45  0 0 0 0 .38  0 0 0 .5 -.12"/></filter>
+  <filter id="dk"><feTurbulence type="fractalNoise" baseFrequency=".008 .012" numOctaves="4" seed="9"/><feColorMatrix values="0 0 0 0 .02  0 0 0 0 .05  0 0 0 0 .02  0 0 0 1.3 -.35"/></filter>
+  <filter id="lt"><feTurbulence type="fractalNoise" baseFrequency=".01 .016" numOctaves="4" seed="4"/><feColorMatrix values="0 0 0 0 .3  0 0 0 0 .45  0 0 0 0 .26  0 0 0 1.2 -.45"/></filter>
+  <filter id="gl"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="5" result="n"/><feColorMatrix in="n" values="0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .75  0 0 0 9 -5.2" result="sp"/><feComposite in="sp" in2="SourceGraphic" operator="in" result="s2"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="s2"/></feMerge></filter>
+  <filter id="paint" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence baseFrequency=".03" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="4"/></filter>
+  <filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="2.2" flood-color="#e8d590" flood-opacity=".5"/></filter>
+</defs>
+
+<rect width="736" height="1312" fill="#0f1a0c"/>
+<rect width="736" height="1312" filter="url(#pp)" opacity=".4" style="mix-blend-mode:multiply"/>
+
+<rect width="736" height="1312" fill="url(#vel)"/>
+<rect width="736" height="1312" filter="url(#dk)" opacity=".7"/><rect width="736" height="1312" filter="url(#lt)" opacity=".3"/>
+
+<g transform="translate(368 288) scale(.92)" filter="url(#glow)">
+  <g id="fil" fill="none" stroke="url(#rg)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></g>
+  <text x="0" y="34" text-anchor="middle" font-family="Pinyon Script, cursive" font-size="128" fill="url(#rg)">S<tspan dx="-20" font-size="108">A</tspan></text>
+</g>
+
+<g id="flowers" filter="url(#paint)"></g>
+</svg>
+<canvas id="glit" aria-hidden="true"></canvas>
+
+<div class="names">Sidak &amp; Alam</div>
+<div class="count" role="timer" aria-label="Time until the wedding">
+  <div><span class="n" id="d">000</span><span class="l">Days</span></div>
+  <div><span class="n" id="h">00</span><span class="l">Hours</span></div>
+  <div><span class="n" id="m">00</span><span class="l">Minutes</span></div>
+  <div><span class="n" id="s">00</span><span class="l">Seconds</span></div>
+</div>
+<div class="date">November 11, 2027</div>
+<div class="sheen"></div>
+</main>
+
+<script>
+const WEDDING = new Date("2027-11-11T00:00:00");
+const $ = id => document.getElementById(id);
+const rng = s => () => (s = (s * 16807) % 2147483647) / 2147483647;
+const FP = [];
+
+/* baroque filigree cartouche */
+{ let d = ""; const E = (t, k = 1) => [130*k*Math.cos(t), 162*k*Math.sin(t)], q = rng(11);
+  for (let i = 0; i <= 160; i++) { const t = i/160*6.2832, [x, y] = E(t, 1 + .035*Math.sin(t*12)); d += (i ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1); if (i % 5 === 0) FP.push([x, y]); }
+  d += "M" + E(0, .9).join(" ") + "A117 146 0 1 1 " + E(3.1416, .9).join(" ") + "A117 146 0 1 1 " + E(0, .9).join(" ");
+  const curl = (t, sg) => { const [bx, by] = E(t, 1.03), nx = Math.cos(t), ny = Math.sin(t)*.9, cx = bx + nx*15, cy = by + ny*15; let a0 = Math.atan2(-ny, -nx), p = "";
+    for (let s = 0; s <= 36; s++) { const a = a0 + sg*s*.23, r = 16*(1 - s/42); p += (s ? "L" : "M") + (cx + Math.cos(a)*r).toFixed(1) + " " + (cy + Math.sin(a)*r).toFixed(1); }
+    FP.push([cx, cy]); return p; };
+  [-1.2,-.85,-.5,-.12,.28,.68,1.08,1.42].forEach((t, i) => { const sg = i % 2 ? 1 : -1; d += curl(t, sg) + curl(3.1416 - t, -sg);
+    const [lx, ly] = E(t + .18, 1.1); d += `M${lx} ${ly}q${nxy(t)[0]} ${nxy(t)[1]} ${nxy(t)[2]} ${nxy(t)[3]}`; });
+  function nxy(t) { return [12*Math.cos(t), 12*Math.sin(t) - 8, 22*Math.cos(t + .4), 22*Math.sin(t + .4)]; }
+  d += "M0-162C-10-176-8-194 0-204C8-194 10-176 0-162M-4-172C-24-174-32-190-22-196C-14-184-9-180-4-176M4-172C24-174 32-190 22-196C14-184 9-180 4-176M-30-164C-46-170-52-160-42-154M30-164C46-170 52-160 42-154";
+  for (let i = -4; i <= 4; i++) d += `M0 168L${i*9} 200`; d += "M-44 200Q0 216 44 200M-24 168Q0 180 24 168";
+  FP.push([0, -200], [0, 205], [-130, 0], [130, 0]);
+  let b = ""; for (let i = 0; i <= 120; i++) { const t = i/120*6.2832, [x, y] = E(t, .955); b += (i ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1); }
+  let o2 = ""; for (let i = 0; i <= 160; i++) { const t = i/160*6.2832, [x, y] = E(t, 1.115 + .02*Math.sin(t*8)); o2 += (i ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1); }
+  d += "M-70 92C-40 78-20 104 0 92C20 80 40 104 70 92M-56 104C-30 96-14 114 0 106C14 98 30 114 56 104";
+  window.BEAD = `<path d="${b}" stroke-width="2.6" stroke-dasharray=".1 5.5"/><path d="${o2}" stroke-width=".9" opacity=".7"/>`;
+  $("fil").innerHTML = `<path d="${d}"/>` + BEAD; }
+
+/* cream amaryllis with gold-glitter tepals */
+const PET = "M0 0C-46-28-62-104-8-158C6-166 22-160 30-150C62-108 44-30 0 0Z";
+function flower(cx, cy, s, rot, seed) { const q = rng(seed); let o = `<g transform="translate(${cx} ${cy}) rotate(${rot}) scale(${s})">`;
+  [[-122,1],[-6,.96],[108,1]].forEach(([a, k]) => o += `<path d="${PET}" transform="rotate(${a}) scale(${k})" fill="url(#gold)" filter="url(#gl)" stroke="#8a6d3a" stroke-width=".8"/>`);
+  [-152,-96,-40,16,72,128].forEach((a, i) => { let v = ""; for (let x = -24; x <= 24; x += 6) v += `M${x*.15} -10Q${x} -70 ${x*1.35} ${-125 - q()*20}`;
+    o += `<g transform="rotate(${a + (q()-.5)*12}) scale(${.85 + q()*.2})"><path d="${PET}" fill="url(#pet)" stroke="#b7aa92" stroke-width="1"/><path d="${v}" fill="none" stroke="#a89b83" stroke-opacity=".5" stroke-width=".8"/>${i % 2 ? `<path d="${PET}" fill="none" stroke="#c9a85e" stroke-width="3" stroke-dasharray="1 3.2"/>` : ""}</g>`; });
+  for (let i = 0; i < 5; i++) { const a = -1.9 + i*.42 + (q()-.5)*.2, L = 110 + q()*40, x = Math.cos(a)*L, y = Math.sin(a)*L - 20;
+    o += `<path d="M0-8Q${x*.3} ${y*.4 - 20} ${x} ${y}" fill="none" stroke="#8a7350" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="${x}" cy="${y}" rx="4.5" ry="8" transform="rotate(${a*57.3 + 90} ${x} ${y})" fill="#6b5637"/>`; }
+  return o + "</g>"; }
+$("flowers").innerHTML = flower(118, 1230, 1.5, -8, 3) + flower(612, 1205, 1.95, 6, 8);
+
+/* twinkling fairy lights */
+const cv = $("glit"), c = cv.getContext("2d"), still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let W, H, last = 0; const G = [], STR = [], r2 = rng(21);
+const spr = col => { const e = document.createElement("canvas"); e.width = e.height = 64; const x = e.getContext("2d"), g = x.createRadialGradient(32, 32, 0, 32, 32, 32);
+  [[0,1],[.16,.8],[.42,.2],[1,0]].forEach(([o, a]) => g.addColorStop(o, `rgba(${col},${a})`)); x.fillStyle = g; x.fillRect(0, 0, 64, 64); return e; };
+const SP = ["255,236,170","255,247,220","240,214,130"].map(spr);
+const size = () => { const d = Math.min(devicePixelRatio || 1, 2); W = cv.clientWidth; H = cv.clientHeight; cv.width = W*d; cv.height = H*d; c.setTransform(d, 0, 0, d, 0, 0); };
+/* scattered lights */
+for (let i = 0; i < 130; i++) G.push({x: r2(), y: r2(), s: 4 + r2()*8, p: r2()*6.28, v: .5 + r2()*1.3, c: i % 3, u: i % 4 ? 0 : .003 + r2()*.005});
+FP.forEach(([x, y]) => G.push({x: (368 + x*.92)/736, y: (288 + y*.92)/1312, s: 8, p: r2()*6.28, v: 1 + r2()*1.2, c: 1, u: 0}));
+/* light strings: two swags across the top, one down each side */
+const string = (fn, n) => { const pts = [], m = 60; for (let i = 0; i <= m; i++) pts.push(fn(i/m)); STR.push({pts});
+  for (let i = 0; i <= n; i++) { const [x, y] = fn(i/n); G.push({x, y, s: 15, p: i*.9, v: 1.6, c: i % 2 ? 0 : 2, u: 0, b: 1}); } };
+string(t => [t, .012 + .05*Math.sin(t*Math.PI)], 16);
+string(t => [t, .05 + .05*Math.sin(t*Math.PI)*0], 0);
+STR.pop();
+string(t => [.035 + .012*Math.sin(t*9), .02 + .64*t], 14);
+string(t => [.965 - .012*Math.sin(t*9), .02 + .64*t], 14);
+function frame(ms) { const t = ms/1000, dt = Math.min(t - last, .1); last = t, k = W/390; c.clearRect(0, 0, W, H);
+  c.strokeStyle = "rgba(0,0,0,.4)"; c.lineWidth = 1;
+  STR.forEach(st => { c.beginPath(); st.pts.forEach((p, i) => i ? c.lineTo(p[0]*W, p[1]*H) : c.moveTo(p[0]*W, p[1]*H)); c.stroke(); });
+  c.globalCompositeOperation = "lighter";
+  G.forEach(g => { if (g.u) { g.y -= g.u*dt*8; if (g.y < -.02) g.y = 1.02; }
+    const a = g.b ? .6 + .4*Math.sin(t*g.v + g.p) : .12 + .88*Math.pow((Math.sin(t*g.v + g.p) + 1)/2, 2), r = g.s*k, x = g.x*W, y = g.y*H;
+    c.globalAlpha = a; c.drawImage(SP[g.c], x - r, y - r, r*2, r*2);
+    if (g.b) { c.globalAlpha = Math.min(1, a + .25); c.drawImage(SP[1], x - r*.3, y - r*.3, r*.6, r*.6); } });
+  c.globalAlpha = 1; c.globalCompositeOperation = "source-over";
+  if (!still) requestAnimationFrame(frame); }
+let k; size(); addEventListener("resize", size); requestAnimationFrame(frame);
+
+/* countdown */
+const pad = (v, n) => String(v).padStart(n, "0");
+function tick() { const t = Math.max(0, Math.floor((WEDDING - new Date()) / 1000));
+  $("d").textContent = pad(Math.floor(t / 86400), 3); $("h").textContent = pad(Math.floor(t % 86400 / 3600), 2);
+  $("m").textContent = pad(Math.floor(t % 3600 / 60), 2); $("s").textContent = pad(t % 60, 2); }
+tick(); setInterval(tick, 1000);
+</script>
+</body>
+</html>

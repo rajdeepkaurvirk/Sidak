@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#163247">
+<meta name="description" content="Sidak & Alam — 11.11.27">
+<title>Sidak & Alam — Until Forever</title>
+
+<!-- One-file site: fonts load from Google when online; everything else is contained in this HTML. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue:#163247;
+  --blue-deep:#0e2434;
+  --blue-soft:#24475d;
+  --gold:#d1b56f;
+  --gold-light:#f0d99a;
+  --gold-dark:#8f7440;
+  --pink:#efb8cb;
+  --ivory:#f8f0df;
+  --shadow:rgba(0,0,0,.42);
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+  background:var(--blue);
+}
+
+body{
+  color:var(--ivory);
+  overflow-x:hidden;
+  font-family:"Cormorant Garamond", Georgia, serif;
+}
+
+.page{
+  position:relative;
+  min-height:100svh;
+  padding:18px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+    radial-gradient(circle at 50% 25%, rgba(77,117,137,.16), transparent 32%),
+    radial-gradient(circle at 50% 75%, rgba(0,0,0,.18), transparent 45%),
+    var(--blue);
+}
+
+/* ---------- THICK VICTORIAN FRAME ---------- */
+
+.frame{
+  position:relative;
+  width:min(100%, 760px);
+  min-height:calc(100svh - 36px);
+  padding:42px 27px 34px;
+  display:flex;
+  justify-content:center;
+  overflow:hidden;
+  border:4px solid var(--gold);
+  border-radius:7px;
+  box-shadow:
+    0 0 0 2px var(--blue),
+    0 0 0 7px var(--gold-dark),
+    0 0 0 9px var(--gold),
+    inset 0 0 0 1px rgba(255,255,255,.25),
+    inset 0 0 45px rgba(0,0,0,.28),
+    0 18px 55px rgba(0,0,0,.38);
+}
+
+/* inner hairline */
+.frame:before{
+  content:"";
+  position:absolute;
+  inset:15px;
+  border:1px solid rgba(240,217,154,.78);
+  border-radius:3px;
+  pointer-events:none;
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.15),
+    0 0 16px rgba(209,181,111,.08);
+}
+
+/* very subtle old-paper grain */
+.frame:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.07;
+  background-image:
+    radial-gradient(rgba(255,255,255,.9) .6px, transparent .7px),
+    radial-gradient(rgba(0,0,0,.8) .6px, transparent .7px);
+  background-size:13px 13px,17px 17px;
+  background-position:0 0,6px 8px;
+  mix-blend-mode:overlay;
+}
+
+/* ---------- GOLD STRING LIGHTS ---------- */
+
+.string{
+  position:absolute;
+  z-index:2;
+  pointer-events:none;
+  height:45px;
+  left:6%;
+  right:6%;
+  top:11px;
+  border-top:2px solid rgba(209,181,111,.85);
+  border-radius:50%;
+  transform:rotate(-1.5deg);
+  filter:drop-shadow(0 0 3px rgba(240,217,154,.25));
+}
+
+.string.bottom{
+  top:auto;
+  bottom:11px;
+  transform:rotate(1.5deg);
+}
+
+.bulb{
+  position:absolute;
+  top:-4px;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--gold-light);
+  box-shadow:
+    0 0 5px 2px rgba(240,217,154,.7),
+    0 0 15px 4px rgba(240,217,154,.24);
+  animation:twinkle 3.8s ease-in-out infinite;
+}
+
+.bulb:after{
+  content:"";
+  position:absolute;
+  top:7px;
+  left:3px;
+  width:1px;
+  height:8px;
+  background:rgba(209,181,111,.8);
+}
+
+.b1{left:7%;animation-delay:.1s}.b2{left:18%;animation-delay:1.1s}
+.b3{left:31%;animation-delay:2s}.b4{left:44%;animation-delay:.6s}
+.b5{left:57%;animation-delay:2.5s}.b6{left:70%;animation-delay:1.6s}
+.b7{left:83%;animation-delay:3s}.b8{left:94%;animation-delay:.9s}
+
+@keyframes twinkle{
+  0%,100%{opacity:.55;transform:scale(.82)}
+  45%{opacity:1;transform:scale(1)}
+  55%{opacity:.72}
+}
+
+/* ---------- CORNER ORNAMENTS ---------- */
+
+.corner{
+  position:absolute;
+  width:88px;
+  height:88px;
+  z-index:3;
+  pointer-events:none;
+  opacity:.95;
+}
+.corner svg{width:100%;height:100%;fill:none;stroke:var(--gold);stroke-width:1.35}
+.tl{top:18px;left:18px}
+.tr{top:18px;right:18px;transform:scaleX(-1)}
+.bl{bottom:18px;left:18px;transform:scaleY(-1)}
+.br{bottom:18px;right:18px;transform:scale(-1)}
+
+.content{
+  position:relative;
+  z-index:4;
+  width:100%;
+  max-width:620px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+/* ---------- MONOGRAM ---------- */
+
+.monogram-wrap{
+  margin-top:2px;
+  margin-bottom:15px;
+  width:124px;
+  height:92px;
+  position:relative;
+  filter:drop-shadow(0 4px 7px rgba(0,0,0,.25));
+}
+
+.monogram-wrap svg{
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+
+.monogram-letter{
+  fill:none;
+  stroke:var(--gold-light);
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.monogram-ornament{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:1.15;
+  stroke-linecap:round;
+}
+
+.monogram-dot{fill:var(--gold-light)}
+
+/* ---------- NAMES ---------- */
+
+.names{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0;
+  line-height:.72;
+  margin:3px 0 17px;
+  filter:drop-shadow(0 5px 8px rgba(0,0,0,.25));
+}
+
+.name{
+  font-family:"Ballet","Brush Script MT",cursive;
+  font-size:clamp(4.7rem, 18vw, 8.5rem);
+  font-weight:400;
+  color:var(--pink);
+  white-space:nowrap;
+  letter-spacing:-.03em;
+}
+
+.amp{
+  font-family:"Cormorant Garamond",serif;
+  color:var(--gold-light);
+  font-size:1.15rem;
+  line-height:1;
+  margin:7px 0 4px;
+  letter-spacing:.22em;
+}
+
+/* ---------- DATE ---------- */
+
+.date{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  color:var(--ivory);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:.69rem;
+  font-weight:500;
+  letter-spacing:.48em;
+  margin-left:.48em;
+  margin-bottom:29px;
+}
+
+.date:before,.date:after{
+  content:"";
+  width:34px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold));
+}
+
+.date:after{
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
+
+/* ---------- MOUNTAIN / VANCOUVER ATMOSPHERE ---------- */
+
+.landscape{
+  width:100%;
+  height:120px;
+  position:relative;
+  margin:0 0 24px;
+  overflow:hidden;
+  opacity:.9;
+  filter:drop-shadow(0 8px 10px rgba(0,0,0,.18));
+}
+
+.landscape:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:45%;
+  background:linear-gradient(transparent,rgba(14,36,52,.62));
+  pointer-events:none;
+}
+
+.mountain-back,
+.mountain-front{
+  position:absolute;
+  left:-4%;
+  width:108%;
+  bottom:24px;
+}
+
+.mountain-back{
+  opacity:.42;
+  filter:blur(.5px);
+}
+
+.mountain-front{
+  opacity:.78;
+}
+
+.mountain-back path{fill:#6b8795}
+.mountain-front path{fill:#314f61}
+
+.water{
+  position:absolute;
+  left:-5%;
+  bottom:0;
+  width:110%;
+  height:32px;
+  fill:none;
+  stroke:rgba(214,205,175,.5);
+  stroke-width:1;
+}
+
+.pines{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:10px;
+  height:42px;
+}
+
+.pines path{
+  fill:#183848;
+  stroke:rgba(209,181,111,.18);
+  stroke-width:.7;
+}
+
+/* ---------- COUNTDOWN / POCKET WATCH ---------- */
+
+.watch{
+  position:relative;
+  width:min(100%, 570px);
+  margin:0 auto 25px;
+  padding:4px;
+  border-radius:50%;
+  background:
+    linear-gradient(145deg, var(--gold-light), var(--gold-dark) 30%, var(--gold) 55%, #856a39);
+  box-shadow:
+    0 18px 30px rgba(0,0,0,.34),
+    0 0 25px rgba(209,181,111,.12);
+}
+
+.watch-inner{
+  position:relative;
+  border:2px solid var(--blue-soft);
+  border-radius:50%;
+  padding:35px 25px 29px;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(77,117,137,.2), transparent 43%),
+    var(--blue);
+  box-shadow:
+    inset 0 0 0 2px rgba(240,217,154,.58),
+    inset 0 0 38px rgba(0,0,0,.36);
+}
+
+/* small crown that makes the frame feel like a watch */
+.watch-crown{
+  position:absolute;
+  top:-17px;
+  left:50%;
+  transform:translateX(-50%);
+  width:48px;
+  height:23px;
+  border:2px solid var(--gold);
+  border-bottom:0;
+  border-radius:9px 9px 0 0;
+  background:var(--blue);
+  box-shadow:0 -3px 7px rgba(0,0,0,.25);
+}
+
+.watch-crown:before,
+.watch-crown:after{
+  content:"";
+  position:absolute;
+  top:5px;
+  width:5px;
+  height:12px;
+  background:var(--gold);
+}
+.watch-crown:before{left:10px}
+.watch-crown:after{right:10px}
+
+.watch-title{
+  color:var(--gold-light);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:.57rem;
+  letter-spacing:.46em;
+  margin-left:.46em;
+  margin-bottom:22px;
+}
+
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:5px;
+}
+
+.unit{
+  position:relative;
+  padding:3px 2px 0;
+}
+
+.number{
+  display:block;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:clamp(2.2rem,8.5vw,4rem);
+  line-height:.9;
+  font-weight:400;
+  color:var(--ivory);
+  text-shadow:0 3px 7px rgba(0,0,0,.4);
+  font-variant-numeric:tabular-nums;
+}
+
+.label{
+  display:block;
+  margin-top:9px;
+  color:var(--gold);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:.48rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+}
+
+.watch-rule{
+  width:90px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:20px auto 0;
+}
+
+/* ---------- FOOTER ---------- */
+
+.forever{
+  color:var(--gold-light);
+  font-family:"Montserrat",Arial,sans-serif;
+  font-size:.58rem;
+  letter-spacing:.62em;
+  margin-left:.62em;
+  margin-top:1px;
+}
+
+.spark{
+  margin-top:13px;
+  color:var(--pink);
+  font-size:1rem;
+  opacity:.88;
+  letter-spacing:.45em;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width:520px){
+  .page{padding:12px}
+
+  .frame{
+    min-height:calc(100svh - 24px);
+    padding:42px 17px 31px;
+    border-width:3px;
+    box-shadow:
+      0 0 0 2px var(--blue),
+      0 0 0 5px var(--gold-dark),
+      0 0 0 7px var(--gold),
+      inset 0 0 35px rgba(0,0,0,.28),
+      0 15px 35px rgba(0,0,0,.38);
+  }
+
+  .frame:before{inset:11px}
+
+  .corner{width:68px;height:68px}
+  .tl{top:15px;left:15px}
+  .tr{top:15px;right:15px}
+  .bl{bottom:15px;left:15px}
+  .br{bottom:15px;right:15px}
+
+  .monogram-wrap{
+    width:105px;
+    height:79px;
+    margin-bottom:13px;
+  }
+
+  .names{margin-bottom:15px}
+
+  .name{
+    font-size:clamp(4.25rem, 19vw, 6.2rem);
+  }
+
+  .date{
+    font-size:.58rem;
+    letter-spacing:.34em;
+    margin-left:.34em;
+    margin-bottom:22px;
+  }
+
+  .date:before,.date:after{width:20px}
+
+  .landscape{
+    height:95px;
+    margin-bottom:18px;
+  }
+
+  .watch{
+    width:100%;
+    max-width:500px;
+  }
+
+  .watch-inner{
+    padding:29px 15px 24px;
+  }
+
+  .watch-title{
+    font-size:.49rem;
+    margin-bottom:17px;
+  }
+
+  .number{
+    font-size:clamp(2rem, 9.5vw, 3rem);
+  }
+
+  .label{
+    font-size:.41rem;
+    letter-spacing:.18em;
+  }
+
+  .watch-rule{margin-top:16px;width:65px}
+
+  .forever{font-size:.5rem;letter-spacing:.45em;margin-left:.45em}
+}
+
+@media (max-height:720px){
+  .frame{padding-top:30px;padding-bottom:25px}
+  .monogram-wrap{margin-bottom:7px}
+  .names{margin-bottom:9px}
+  .name{font-size:clamp(3.8rem,15vw,6.2rem)}
+  .date{margin-bottom:12px}
+  .landscape{height:70px;margin-bottom:10px}
+  .watch-inner{padding-top:24px;padding-bottom:20px}
+  .watch-title{margin-bottom:12px}
+  .watch-rule{margin-top:12px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .bulb{animation:none}
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+  <section class="frame" aria-label="Sidak and Alam wedding countdown">
+
+    <div class="string" aria-hidden="true">
+      <i class="bulb b1"></i><i class="bulb b2"></i><i class="bulb b3"></i><i class="bulb b4"></i>
+      <i class="bulb b5"></i><i class="bulb b6"></i><i class="bulb b7"></i><i class="bulb b8"></i>
+    </div>
+
+    <div class="string bottom" aria-hidden="true">
+      <i class="bulb b1"></i><i class="bulb b2"></i><i class="bulb b3"></i><i class="bulb b4"></i>
+      <i class="bulb b5"></i><i class="bulb b6"></i><i class="bulb b7"></i><i class="bulb b8"></i>
+    </div>
+
+    <!-- Victorian corner flourishes -->
+    <div class="corner tl" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <path d="M4 42 C18 11 38 4 70 4 C84 4 94 9 97 20"/>
+        <path d="M4 60 C16 36 31 25 55 20 C72 17 84 20 91 29"/>
+        <path d="M5 78 C17 57 30 46 44 40"/>
+        <path d="M21 5 C18 17 21 27 30 34 C38 40 48 40 57 35"/>
+        <path d="M48 5 C46 15 50 21 58 24 C67 28 76 25 81 18"/>
+        <path d="M9 20 C20 20 27 25 29 33"/>
+        <circle cx="73" cy="8" r="2"/>
+        <circle cx="18" cy="55" r="1.7"/>
+      </svg>
+    </div>
+
+    <div class="corner tr" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <path d="M4 42 C18 11 38 4 70 4 C84 4 94 9 97 20"/>
+        <path d="M4 60 C16 36 31 25 55 20 C72 17 84 20 91 29"/>
+        <path d="M5 78 C17 57 30 46 44 40"/>
+        <path d="M21 5 C18 17 21 27 30 34 C38 40 48 40 57 35"/>
+        <path d="M48 5 C46 15 50 21 58 24 C67 28 76 25 81 18"/>
+        <path d="M9 20 C20 20 27 25 29 33"/>
+      </svg>
+    </div>
+
+    <div class="corner bl" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <path d="M4 42 C18 11 38 4 70 4 C84 4 94 9 97 20"/>
+        <path d="M4 60 C16 36 31 25 55 20 C72 17 84 20 91 29"/>
+        <path d="M5 78 C17 57 30 46 44 40"/>
+        <path d="M21 5 C18 17 21 27 30 34 C38 40 48 40 57 35"/>
+        <path d="M48 5 C46 15 50 21 58 24 C67 28 76 25 81 18"/>
+      </svg>
+    </div>
+
+    <div class="corner br" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <path d="M4 42 C18 11 38 4 70 4 C84 4 94 9 97 20"/>
+        <path d="M4 60 C16 36 31 25 55 20 C72 17 84 20 91 29"/>
+        <path d="M5 78 C17 57 30 46 44 40"/>
+        <path d="M21 5 C18 17 21 27 30 34 C38 40 48 40 57 35"/>
+        <path d="M48 5 C46 15 50 21 58 24 C67 28 76 25 81 18"/>
+      </svg>
+    </div>
+
+    <div class="content">
+
+      <!-- S + A monogram -->
+      <div class="monogram-wrap" aria-label="S and A monogram">
+        <svg viewBox="0 0 140 100" role="img">
+          <g class="monogram-ornament">
+            <path d="M8 50 C23 29 38 19 56 20 C48 27 45 35 49 42"/>
+            <path d="M132 50 C117 29 102 19 84 20 C92 27 95 35 91 42"/>
+            <path d="M12 68 C25 82 40 87 54 80"/>
+            <path d="M128 68 C115 82 100 87 86 80"/>
+            <path d="M48 17 C55 10 62 8 70 8 C78 8 85 10 92 17"/>
+            <path d="M48 83 C55 91 62 93 70 93 C78 93 85 91 92 83"/>
+            <circle class="monogram-dot" cx="70" cy="8" r="2"/>
+          </g>
+
+          <!-- stylized S -->
+          <path class="monogram-letter"
+                d="M66 23 C57 16 46 20 48 29 C50 37 64 37 67 45
+                   C70 53 60 60 53 64 C46 68 49 78 59 79
+                   C66 80 72 76 76 71"/>
+
+          <!-- stylized A -->
+          <path class="monogram-letter"
+                d="M72 76 L81 32 C82 25 87 20 91 22
+                   C96 24 97 30 95 36 L87 77
+                   M78 56 C84 54 91 54 94 57"/>
+
+          <path class="monogram-ornament" d="M60 48 C66 52 74 54 81 51"/>
+        </svg>
+      </div>
+
+      <div class="names">
+        <div class="name">Sidak</div>
+        <div class="amp">&amp;</div>
+        <div class="name">Alam</div>
+      </div>
+
+      <div class="date">11 • 11 • 27</div>
+
+      <!-- Vancouver-inspired mountain / water view -->
+      <div class="landscape" aria-hidden="true">
+        <svg class="mountain-back" viewBox="0 0 900 180" preserveAspectRatio="none">
+          <path d="M0 154 L90 96 L135 126 L225 48 L275 105 L345 70 L415 124
+                   L500 31 L548 91 L635 53 L700 117 L780 66 L900 143 L900 180 L0 180Z"/>
+        </svg>
+        <svg class="mountain-front" viewBox="0 0 900 180" preserveAspectRatio="none">
+          <path d="M0 160 L78 119 L120 140 L214 67 L267 125 L319 105 L389 143
+                   L466 79 L526 132 L600 96 L672 143 L744 88 L810 128 L900 96
+                   L900 180 L0 180Z"/>
+        </svg>
+        <svg class="water" viewBox="0 0 900 70" preserveAspectRatio="none">
+          <path d="M0 27 Q80 18 160 27 T320 27 T480 27 T640 27 T800 27 T960 27"/>
+          <path d="M40 43 Q120 35 200 43 T360 43 T520 43 T680 43 T840 43"/>
+          <path d="M130 58 Q210 51 290 58 T450 58 T610 58 T770 58"/>
+        </svg>
+        <svg class="pines" viewBox="0 0 900 70" preserveAspectRatio="none">
+          <path d="M34 70 L34 35 L18 52 L27 52 L13 64 L27 61 L18 70Z
+                   M58 70 L58 25 L43 44 L51 43 L38 57 L52 54 L42 70Z
+                   M842 70 L842 28 L827 48 L835 47 L821 61 L836 57 L826 70Z
+                   M873 70 L873 36 L860 53 L867 52 L854 65 L867 61 L858 70Z"/>
+        </svg>
+      </div>
+
+      <!-- Pocket-watch countdown -->
+      <section class="watch" aria-label="Wedding countdown">
+        <div class="watch-crown" aria-hidden="true"></div>
+        <div class="watch-inner">
+          <div class="watch-title">UNTIL THE DAY</div>
+
+          <div class="countdown">
+            <div class="unit">
+              <span class="number" id="days">000</span>
+              <span class="label">Days</span>
+            </div>
+            <div class="unit">
+              <span class="number" id="hours">00</span>
+              <span class="label">Hours</span>
+            </div>
+            <div class="unit">
+              <span class="number" id="minutes">00</span>
+              <span class="label">Minutes</span>
+            </div>
+            <div class="unit">
+              <span class="number" id="seconds">00</span>
+              <span class="label">Seconds</span>
+            </div>
+          </div>
+
+          <div class="watch-rule"></div>
+        </div>
+      </section>
+
+      <div class="forever">UNTIL FOREVER</div>
+      <div class="spark">✦</div>
+
+    </div>
+  </section>
+</main>
+
+<script>
+/*
+  Wedding date:
+  November 11, 2027.
+  Vancouver is on Pacific Time. The browser automatically handles the
+  viewer's local clock; the date below is fixed to Vancouver's PST offset.
+*/
+const weddingDate = new Date("2027-11-11T00:00:00-08:00");
+
+const $ = id => document.getElementById(id);
+
+function pad(value, length = 2) {
+  return String(value).padStart(length, "0");
+}
+
+function updateCountdown() {
+  const now = new Date();
+  let diff = weddingDate.getTime() - now.getTime();
+
+  if (diff <= 0) {
+    $("days").textContent = "000";
+    $("hours").textContent = "00";
+    $("minutes").textContent = "00";
+    $("seconds").textContent = "00";
+    return;
+  }
+
+  const totalSeconds = Math.floor(diff / 1000);
+
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  $("days").textContent = pad(days, 3);
+  $("hours").textContent = pad(hours);
+  $("minutes").textContent = pad(minutes);
+  $("seconds").textContent = pad(seconds);
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>

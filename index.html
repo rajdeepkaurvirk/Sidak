@@ -59,6 +59,34 @@ body{
   100% { background-position: 1000px 0; }
 }
 
+/* Glitter animation */
+@keyframes glitter {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* Glitter particles */
+.glitter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.glitter-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(240,217,154,1) 0%, rgba(240,217,154,0) 70%);
+  border-radius: 50%;
+  animation: glitter 2s ease-in-out infinite;
+  box-shadow: 0 0 8px rgba(240,217,154,0.8);
+}
+
 .page::before {
   content: "";
   position: fixed;
@@ -211,14 +239,14 @@ body{
   flex-direction:column;
   align-items:center;
   text-align:center;
-  gap: 8px;
+  gap: 12px;
 }
 
 /* ---------- MONOGRAM ---------- */
 
 .monogram-wrap{
   margin-top:2px;
-  margin-bottom:8px;
+  margin-bottom:12px;
   width:124px;
   height:92px;
   position:relative;
@@ -253,13 +281,15 @@ body{
 
 .names{
   display:flex;
-  flex-direction:column;
+  flex-direction:row;
   align-items:center;
-  gap:2px;
+  justify-content:center;
+  gap:14px;
   line-height:.8;
   margin:0;
   filter:drop-shadow(0 5px 8px rgba(0,0,0,.25));
   flex-shrink: 0;
+  flex-wrap:wrap;
 }
 
 .name{
@@ -278,9 +308,13 @@ body{
   color:var(--gold-light);
   font-size:1.15rem;
   line-height:1;
-  margin:4px 0 2px;
+  margin:0;
   letter-spacing:.22em;
+  order:2;
 }
+
+.name:first-child{order:1}
+.name:last-child{order:3}
 
 /* ---------- DATE ---------- */
 
@@ -294,7 +328,7 @@ body{
   font-weight:500;
   letter-spacing:.48em;
   margin-left:.48em;
-  margin:12px 0;
+  margin:14px 0 16px;
   flex-shrink: 0;
 }
 
@@ -314,7 +348,7 @@ body{
 .watch{
   position:relative;
   width:min(100%, 570px);
-  margin:12px auto 0;
+  margin:16px auto 0;
   padding:4px;
   border-radius:50%;
   background:
@@ -421,12 +455,12 @@ body{
   font-size:.58rem;
   letter-spacing:.62em;
   margin-left:.62em;
-  margin-top:16px;
+  margin-top:18px;
   flex-shrink: 0;
 }
 
 .spark{
-  margin-top:8px;
+  margin-top:10px;
   color:var(--pink);
   font-size:1rem;
   opacity:.88;
@@ -462,10 +496,15 @@ body{
   .monogram-wrap{
     width:105px;
     height:79px;
-    margin-bottom:8px;
+    margin-bottom:12px;
   }
 
-  .names{margin-bottom:8px}
+  .content{gap:10px}
+
+  .names{
+    gap:10px;
+    margin-bottom:0;
+  }
 
   .name{
     font-size:clamp(4.25rem, 19vw, 6.2rem);
@@ -475,7 +514,7 @@ body{
     font-size:.58rem;
     letter-spacing:.34em;
     margin-left:.34em;
-    margin:10px 0;
+    margin:12px 0 14px;
   }
 
   .date:before,.date:after{width:20px}
@@ -483,7 +522,7 @@ body{
   .watch{
     width:100%;
     max-width:500px;
-    margin: 10px auto 0;
+    margin: 14px auto 0;
   }
 
   .watch-inner{
@@ -506,34 +545,39 @@ body{
 
   .watch-rule{margin-top:16px;width:65px}
 
-  .forever{font-size:.5rem;letter-spacing:.45em;margin-left:.45em;margin-top:12px}
+  .forever{font-size:.5rem;letter-spacing:.45em;margin-left:.45em;margin-top:14px}
   
-  .spark{margin-top:6px}
+  .spark{margin-top:8px}
 }
 
 @media (max-height:720px){
   .frame{padding-top:30px;padding-bottom:25px}
-  .monogram-wrap{margin-bottom:6px}
-  .names{margin-bottom:6px}
+  .monogram-wrap{margin-bottom:10px}
+  .content{gap:10px}
+  .names{margin-bottom:0;gap:10px}
   .name{font-size:clamp(3.8rem,15vw,6.2rem)}
-  .date{margin: 8px 0}
-  .watch{margin-top: 8px}
+  .date{margin: 10px 0 12px}
+  .watch{margin-top: 12px}
   .watch-inner{padding-top:24px;padding-bottom:20px}
   .watch-title{margin-bottom:12px}
   .watch-rule{margin-top:12px}
-  .forever{margin-top: 10px}
-  .spark{margin-top: 4px}
+  .forever{margin-top: 12px}
+  .spark{margin-top: 6px}
 }
 
 @media (prefers-reduced-motion:reduce){
   .bulb{animation:none}
   .page::before {animation: none}
+  .glitter-particle{animation:none}
 }
 </style>
 </head>
 
 <body>
 <main class="page">
+  <!-- Glitter background -->
+  <div class="glitter" aria-hidden="true"></div>
+
   <section class="frame" aria-label="Sidak and Alam wedding countdown">
 
     <div class="string" aria-hidden="true">
@@ -706,6 +750,29 @@ function updateCountdown() {
   $("seconds").textContent = pad(seconds);
 }
 
+// Create glitter particles
+function createGlitter() {
+  const glitterContainer = document.querySelector('.glitter');
+  const particleCount = 50;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'glitter-particle';
+    
+    const size = Math.random() * 3 + 2;
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
+    particle.style.animationDelay = Math.random() * 2 + 's';
+    particle.style.opacity = Math.random() * 0.6 + 0.3;
+    
+    glitterContainer.appendChild(particle);
+  }
+}
+
+createGlitter();
 updateCountdown();
 setInterval(updateCountdown, 1000);
 </script>

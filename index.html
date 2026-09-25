@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#163247">
+<meta name="theme-color" content="#0a1929">
 <meta name="description" content="Sidak & Alam — 11.11.27">
 <title>Sidak & Alam — Until Forever</title>
 
@@ -14,9 +14,9 @@
 
 <style>
 :root{
-  --blue:#163247;
-  --blue-deep:#0e2434;
-  --blue-soft:#24475d;
+  --midnight-blue:#0a1929;
+  --midnight-blue-light:#1a3a52;
+  --midnight-blue-soft:#2d5a7a;
   --gold:#d1b56f;
   --gold-light:#f0d99a;
   --gold-dark:#8f7440;
@@ -31,7 +31,7 @@ html,body{
   margin:0;
   width:100%;
   min-height:100%;
-  background:var(--blue);
+  background:var(--midnight-blue);
 }
 
 body{
@@ -48,15 +48,43 @@ body{
   justify-content:center;
   align-items:center;
   background:
-    radial-gradient(circle at 50% 25%, rgba(77,117,137,.16), transparent 32%),
-    radial-gradient(circle at 50% 75%, rgba(0,0,0,.18), transparent 45%),
-    var(--blue);
+    radial-gradient(circle at 50% 25%, rgba(45,90,122,.12), transparent 32%),
+    radial-gradient(circle at 50% 75%, rgba(0,0,0,.25), transparent 45%),
+    var(--midnight-blue);
+}
+
+/* Subtle shimmer effect */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(240, 217, 154, 0.03) 25%,
+    rgba(240, 217, 154, 0.06) 50%,
+    rgba(240, 217, 154, 0.03) 75%,
+    transparent 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 8s infinite linear;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* ---------- THICK VICTORIAN FRAME ---------- */
 
 .frame{
   position:relative;
+  z-index: 10;
   width:min(100%, 760px);
   min-height:calc(100svh - 36px);
   padding:42px 27px 34px;
@@ -66,7 +94,7 @@ body{
   border:4px solid var(--gold);
   border-radius:7px;
   box-shadow:
-    0 0 0 2px var(--blue),
+    0 0 0 2px var(--midnight-blue),
     0 0 0 7px var(--gold-dark),
     0 0 0 9px var(--gold),
     inset 0 0 0 1px rgba(255,255,255,.25),
@@ -183,17 +211,19 @@ body{
   flex-direction:column;
   align-items:center;
   text-align:center;
+  gap: 8px;
 }
 
 /* ---------- MONOGRAM ---------- */
 
 .monogram-wrap{
   margin-top:2px;
-  margin-bottom:15px;
+  margin-bottom:8px;
   width:124px;
   height:92px;
   position:relative;
   filter:drop-shadow(0 4px 7px rgba(0,0,0,.25));
+  flex-shrink: 0;
 }
 
 .monogram-wrap svg{
@@ -225,10 +255,11 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:0;
-  line-height:.72;
-  margin:3px 0 17px;
+  gap:2px;
+  line-height:.8;
+  margin:0;
   filter:drop-shadow(0 5px 8px rgba(0,0,0,.25));
+  flex-shrink: 0;
 }
 
 .name{
@@ -238,6 +269,8 @@ body{
   color:var(--pink);
   white-space:nowrap;
   letter-spacing:-.03em;
+  margin: 0;
+  line-height: 0.9;
 }
 
 .amp{
@@ -245,7 +278,7 @@ body{
   color:var(--gold-light);
   font-size:1.15rem;
   line-height:1;
-  margin:7px 0 4px;
+  margin:4px 0 2px;
   letter-spacing:.22em;
 }
 
@@ -261,7 +294,8 @@ body{
   font-weight:500;
   letter-spacing:.48em;
   margin-left:.48em;
-  margin-bottom:29px;
+  margin:12px 0;
+  flex-shrink: 0;
 }
 
 .date:before,.date:after{
@@ -275,80 +309,12 @@ body{
   background:linear-gradient(90deg,var(--gold),transparent);
 }
 
-/* ---------- MOUNTAIN / VANCOUVER ATMOSPHERE ---------- */
-
-.landscape{
-  width:100%;
-  height:120px;
-  position:relative;
-  margin:0 0 24px;
-  overflow:hidden;
-  opacity:.9;
-  filter:drop-shadow(0 8px 10px rgba(0,0,0,.18));
-}
-
-.landscape:after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:45%;
-  background:linear-gradient(transparent,rgba(14,36,52,.62));
-  pointer-events:none;
-}
-
-.mountain-back,
-.mountain-front{
-  position:absolute;
-  left:-4%;
-  width:108%;
-  bottom:24px;
-}
-
-.mountain-back{
-  opacity:.42;
-  filter:blur(.5px);
-}
-
-.mountain-front{
-  opacity:.78;
-}
-
-.mountain-back path{fill:#6b8795}
-.mountain-front path{fill:#314f61}
-
-.water{
-  position:absolute;
-  left:-5%;
-  bottom:0;
-  width:110%;
-  height:32px;
-  fill:none;
-  stroke:rgba(214,205,175,.5);
-  stroke-width:1;
-}
-
-.pines{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:10px;
-  height:42px;
-}
-
-.pines path{
-  fill:#183848;
-  stroke:rgba(209,181,111,.18);
-  stroke-width:.7;
-}
-
 /* ---------- COUNTDOWN / POCKET WATCH ---------- */
 
 .watch{
   position:relative;
   width:min(100%, 570px);
-  margin:0 auto 25px;
+  margin:12px auto 0;
   padding:4px;
   border-radius:50%;
   background:
@@ -356,16 +322,17 @@ body{
   box-shadow:
     0 18px 30px rgba(0,0,0,.34),
     0 0 25px rgba(209,181,111,.12);
+  flex-shrink: 0;
 }
 
 .watch-inner{
   position:relative;
-  border:2px solid var(--blue-soft);
+  border:2px solid var(--midnight-blue-soft);
   border-radius:50%;
   padding:35px 25px 29px;
   background:
-    radial-gradient(circle at 50% 38%, rgba(77,117,137,.2), transparent 43%),
-    var(--blue);
+    radial-gradient(circle at 50% 38%, rgba(45,90,122,.2), transparent 43%),
+    var(--midnight-blue);
   box-shadow:
     inset 0 0 0 2px rgba(240,217,154,.58),
     inset 0 0 38px rgba(0,0,0,.36);
@@ -382,7 +349,7 @@ body{
   border:2px solid var(--gold);
   border-bottom:0;
   border-radius:9px 9px 0 0;
-  background:var(--blue);
+  background:var(--midnight-blue);
   box-shadow:0 -3px 7px rgba(0,0,0,.25);
 }
 
@@ -454,15 +421,17 @@ body{
   font-size:.58rem;
   letter-spacing:.62em;
   margin-left:.62em;
-  margin-top:1px;
+  margin-top:16px;
+  flex-shrink: 0;
 }
 
 .spark{
-  margin-top:13px;
+  margin-top:8px;
   color:var(--pink);
   font-size:1rem;
   opacity:.88;
   letter-spacing:.45em;
+  flex-shrink: 0;
 }
 
 /* ---------- MOBILE ---------- */
@@ -475,7 +444,7 @@ body{
     padding:42px 17px 31px;
     border-width:3px;
     box-shadow:
-      0 0 0 2px var(--blue),
+      0 0 0 2px var(--midnight-blue),
       0 0 0 5px var(--gold-dark),
       0 0 0 7px var(--gold),
       inset 0 0 35px rgba(0,0,0,.28),
@@ -493,10 +462,10 @@ body{
   .monogram-wrap{
     width:105px;
     height:79px;
-    margin-bottom:13px;
+    margin-bottom:8px;
   }
 
-  .names{margin-bottom:15px}
+  .names{margin-bottom:8px}
 
   .name{
     font-size:clamp(4.25rem, 19vw, 6.2rem);
@@ -506,19 +475,15 @@ body{
     font-size:.58rem;
     letter-spacing:.34em;
     margin-left:.34em;
-    margin-bottom:22px;
+    margin:10px 0;
   }
 
   .date:before,.date:after{width:20px}
 
-  .landscape{
-    height:95px;
-    margin-bottom:18px;
-  }
-
   .watch{
     width:100%;
     max-width:500px;
+    margin: 10px auto 0;
   }
 
   .watch-inner{
@@ -541,23 +506,28 @@ body{
 
   .watch-rule{margin-top:16px;width:65px}
 
-  .forever{font-size:.5rem;letter-spacing:.45em;margin-left:.45em}
+  .forever{font-size:.5rem;letter-spacing:.45em;margin-left:.45em;margin-top:12px}
+  
+  .spark{margin-top:6px}
 }
 
 @media (max-height:720px){
   .frame{padding-top:30px;padding-bottom:25px}
-  .monogram-wrap{margin-bottom:7px}
-  .names{margin-bottom:9px}
+  .monogram-wrap{margin-bottom:6px}
+  .names{margin-bottom:6px}
   .name{font-size:clamp(3.8rem,15vw,6.2rem)}
-  .date{margin-bottom:12px}
-  .landscape{height:70px;margin-bottom:10px}
+  .date{margin: 8px 0}
+  .watch{margin-top: 8px}
   .watch-inner{padding-top:24px;padding-bottom:20px}
   .watch-title{margin-bottom:12px}
   .watch-rule{margin-top:12px}
+  .forever{margin-top: 10px}
+  .spark{margin-top: 4px}
 }
 
 @media (prefers-reduced-motion:reduce){
   .bulb{animation:none}
+  .page::before {animation: none}
 }
 </style>
 </head>
@@ -659,30 +629,6 @@ body{
       </div>
 
       <div class="date">11 • 11 • 27</div>
-
-      <!-- Vancouver-inspired mountain / water view -->
-      <div class="landscape" aria-hidden="true">
-        <svg class="mountain-back" viewBox="0 0 900 180" preserveAspectRatio="none">
-          <path d="M0 154 L90 96 L135 126 L225 48 L275 105 L345 70 L415 124
-                   L500 31 L548 91 L635 53 L700 117 L780 66 L900 143 L900 180 L0 180Z"/>
-        </svg>
-        <svg class="mountain-front" viewBox="0 0 900 180" preserveAspectRatio="none">
-          <path d="M0 160 L78 119 L120 140 L214 67 L267 125 L319 105 L389 143
-                   L466 79 L526 132 L600 96 L672 143 L744 88 L810 128 L900 96
-                   L900 180 L0 180Z"/>
-        </svg>
-        <svg class="water" viewBox="0 0 900 70" preserveAspectRatio="none">
-          <path d="M0 27 Q80 18 160 27 T320 27 T480 27 T640 27 T800 27 T960 27"/>
-          <path d="M40 43 Q120 35 200 43 T360 43 T520 43 T680 43 T840 43"/>
-          <path d="M130 58 Q210 51 290 58 T450 58 T610 58 T770 58"/>
-        </svg>
-        <svg class="pines" viewBox="0 0 900 70" preserveAspectRatio="none">
-          <path d="M34 70 L34 35 L18 52 L27 52 L13 64 L27 61 L18 70Z
-                   M58 70 L58 25 L43 44 L51 43 L38 57 L52 54 L42 70Z
-                   M842 70 L842 28 L827 48 L835 47 L821 61 L836 57 L826 70Z
-                   M873 70 L873 36 L860 53 L867 52 L854 65 L867 61 L858 70Z"/>
-        </svg>
-      </div>
 
       <!-- Pocket-watch countdown -->
       <section class="watch" aria-label="Wedding countdown">
